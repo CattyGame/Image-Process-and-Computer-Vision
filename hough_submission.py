@@ -1,8 +1,5 @@
 import numpy as np
 
-# ==============================================================================
-# HÀM 1: BỎ PHIẾU VÀO MẢNG TÍCH LŨY (HOUGH ACCUMULATE)
-# ==============================================================================
 def hough_accumulate(edges, theta_range, rho_range, n_theta, n_rho,
                      grad_dir=None, delta_deg=None):
     """Bỏ phiếu vào mảng tích lũy. Nếu grad_dir khác None, chỉ bỏ phiếu
@@ -47,10 +44,6 @@ def hough_accumulate(edges, theta_range, rho_range, n_theta, n_rho,
 
     return A, thetas, rhos
 
-
-# ==============================================================================
-# HÀM 2: TRIỆT PHI CỰC ĐẠI VÀ TÌM ĐỈNH (FIND PEAKS)
-# ==============================================================================
 def find_peaks(A, n_peaks, nms_radius=3, smooth_sigma=1.0, thetas=None, rhos=None):
     """Làm mượt A bằng nhân Gauss 2D đệm quấn vòng Mobius, triệt phi cực đại NMS 2D,
     trả về danh sách (rho, theta, votes) sắp xếp giảm dần."""
@@ -100,10 +93,6 @@ def find_peaks(A, n_peaks, nms_radius=3, smooth_sigma=1.0, thetas=None, rhos=Non
     peaks.sort(key=lambda p: p[3], reverse=True)
     return [(p[0], p[1], p[2]) for p in peaks[:n_peaks]]
 
-
-# ==============================================================================
-# HÀM 3: HOUGH ĐA TỈ LỆ (HOUGH MULTISCALE)
-# ==============================================================================
 def hough_multiscale(edges, grad_dir=None, delta_deg=None, n_levels=2, refine_factor=8,
                      n_peaks=5, d_theta_coarse_deg=1.0, d_rho_coarse=2.0,
                      nms_radius=3, smooth_sigma=1.0):
